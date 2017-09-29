@@ -1,10 +1,16 @@
 const express = require('express');
 const app = express();
-const transcriber = require('./transcriber');
+const Transcriber = require('./transcriber');
+const config = require('./config');
+
+var transcriber = new Transcriber(
+	config.clientId,
+	config.clientKey
+);
 
 app.get('/', function()  {
 	console.log("got //");
-	transcriber.test();
+	transcriber.transcribe();
 });
 
 app.listen(3000);
